@@ -23,9 +23,14 @@ public class RefugiContext : DbContext
             .HasOne(a => a.Xip)
             .WithOne(x => x.Animal)
             .HasForeignKey<Xip>(x => x.AnimalID);
+        
         modelBuilder.Entity<Xip>()
             .HasIndex(x => x.Codi)
             .IsUnique();
+
+        modelBuilder.Entity<Animal>()
+            .Property(x => x.Especie)
+            .HasConversion<string>();
     }
     
 }
